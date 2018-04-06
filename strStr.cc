@@ -12,20 +12,11 @@ public:
             return -1;
         }
         for (int i = 0; i < haystackLen; ++i) {
-            for (int j = 0; j < needleLen; ++j) {
-                if (haystack[i] == needle[0]) {
-                    startingCheck = true;
-                }
-                if (i+j > haystackLen || (startingCheck && haystack[i+j] != needle[j])) {
-                    interrupted = true;
-                    break;
+            if (haystack[i] == needle[0]) {
+                if (i + needleLen <= haystackLen && haystack.substr(i, needleLen) == needle) {
+                    return i;
                 }
             }
-            if (startingCheck && !interrupted) {
-                return i;
-            }
-            interrupted = false;
-            startingCheck = false;
         }
         return -1;
     }
