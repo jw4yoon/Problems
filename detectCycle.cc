@@ -9,16 +9,16 @@ A Node is defined as:
 bool has_cycle(Node* head) {
     Node* node = head;
     Node* node2 = head;
-    bool moveNode2 = false;
-    while(node != nullptr) {
-        if (moveNode2) { // 
-            node2 = node2->next;
+    while(node != nullptr) {// move node twice when node2 moves 1
+        node = node->next;
+        if (node == nullptr) {
+            break;
         }
         node = node->next;
+        node2 = node2->next; 
         if (node == node2) {
             return true;
         }
-        moveNode2 = !moveNode2; // to move node2 only once when node moves twice
     }
     return false;
 }
